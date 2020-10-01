@@ -1,0 +1,53 @@
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Practice Assessment</title>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Wish List Items</h1>
+    <!--If items, then table. Else, "No Widgets Exist"-->
+    {% if items|length == 0 %}
+    <h3>No Wish List Items Exist</h3>        
+    {% else %}
+    <table class="striped">
+      <thead>
+        <tr><th>Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Delete </th></tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+          <tr>
+            <td>{{item.description}}&nbsp;</td>
+            <td>
+              <form action="{%url 'delete_widget' widget.id%}" method="delete">
+                <input type="submit" value="X" class="btn" style="margin: 20px; color: red;">
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+    <hr>
+
+    <!--Add Widget Table-->
+    <h4>Add A Wish Item</h4>
+    <form action="{%url 'add_item'%}" method="post">
+        {% csrf_token %}
+        <table class="striped">
+            {{ item_form.as_table }}
+        </table>
+        <br>
+        <input type="submit" value="Add A Wish Item" class="btn" style="margin: 20px;">
+    </form>
+    {% endblock %}
+
+</body>
+</html>
