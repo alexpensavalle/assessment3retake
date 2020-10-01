@@ -13,38 +13,45 @@
 </head>
 <body>
     <h1>Wish List Items</h1>
-    <!--If items, then table. Else, "No Widgets Exist"-->
+    <!--If items, then table. Else, "No Items Exist"-->
     {% if items|length == 0 %}
-    <h3>No Wish List Items Exist</h3>        
+    <h3>No Wish Items Exist</h3>        
     {% else %}
-    <table class="striped">
+    <div>
+    <table class="pure-table">
       <thead>
-        <tr><th>Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Delete </th></tr>
+        <tr><th>Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>&nbsp;&nbsp;&nbsp;&nbsp;Delete </th></tr>
       </thead>
       <tbody>
         {% for item in items %}
           <tr>
             <td>{{item.description}}&nbsp;</td>
             <td>
-              <form action="{%url 'delete_widget' widget.id%}" method="delete">
-                <input type="submit" value="X" class="btn" style="margin: 20px; color: red;">
+              <form action="{%url 'delete_item' item.id%}" method="delete">
+                <input type="submit" value="X" class="btn" style="margin: 20px; color: red; background-color:transparent;">
               </form>
             </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
+  </div>
     {% endif %}
     <hr>
 
-    <!--Add Widget Table-->
-    <h4>Add A Wish Item</h4>
+
+
+
+
+
+
+    <!--Add Item Table-->
+    <br>
     <form action="{%url 'add_item'%}" method="post">
         {% csrf_token %}
-        <table class="striped">
+        <div><table>
             {{ item_form.as_table }}
-        </table>
-        <br>
+        </table></div>
         <input type="submit" value="Add A Wish Item" class="btn" style="margin: 20px;">
     </form>
     {% endblock %}

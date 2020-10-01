@@ -1,0 +1,51 @@
+body {
+    text-align: center;
+    margin: 2rem;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+}
+
+#id_description{
+    margin: 10px;
+}
+
+.btn {
+    border: none;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+th, td {
+text-align: left;
+padding: 16px;
+}
+
+td {
+border: black;
+padding-top: 0px;
+padding-bottom: 0px;
+}
+
+table {
+    margin: 2rem auto;
+}
+
+table a {
+    color: red;
+    text-decoration: none;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
